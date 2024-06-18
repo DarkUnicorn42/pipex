@@ -1,2 +1,2 @@
 # pipex
-pipex project for 42 Core
+pipex for 42 Common Core
