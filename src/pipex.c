@@ -4,8 +4,8 @@ void pipex(int fd_in, int fd_out, char **argv, char **envp)
 {
 	int	pipe_fd[2];
 	pid_t	pid1;
-	pid_t	pid2;	
-	// Create a pipe, pipe_fd[0] is for reading, pipe_fd[1] is for writing
+	pid_t	pid2;
+	
 	if (pipe(pipe_fd) == -1)
 		error_exit("pipe");
 	pid1 = fork();
@@ -36,11 +36,12 @@ void pipex(int fd_in, int fd_out, char **argv, char **envp)
 	waitpid(pid2, NULL, 0);
 }	
 
-int main(int argc, char **argv, char **envp) {
+int main(int argc, char **argv, char **envp)
+{
 	int fd_in;
 	int fd_out;	
 	if (argc != 5)
-		errror_exit("wrong arg count");
+		error_exit("wrong arg count");
 	fd_in = open(argv[1], O_RDONLY);
 	if (fd_in == -1)
 	    error_exit("open infile");

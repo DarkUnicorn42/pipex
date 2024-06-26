@@ -2,18 +2,19 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
+# include <stdlib.h>
 # include <stdio.h>
-# include <sys/wait.h>
 # include <fcntl.h>
+# include <sys/wait.h>
+# include <string.h>
+# include <errno.h>
 # include "../libft/libft.h"
 
-void error_exit(const char *msg);
-void execute_cmd(char *cmd, char **envp);
-void pipex(int fd_in, int fd_out, char **argv, char **envp);
-char *find_command(char *cmd);
-
+void	error_exit(const char *message);
+void    execute_cmd(char *cmd, char **envp);
+void    pipex(int fd_in, int fd_out, char **argv, char **envp);
+char	*get_path_env(char *envp[]);
+char	*find_command_path(const char *command, char **envp);
 
 #endif
