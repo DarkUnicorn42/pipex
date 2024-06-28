@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwojtcza <mwojtcza@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/27 14:07:36 by mwojtcza          #+#    #+#             */
+/*   Updated: 2024/06/27 14:07:36 by mwojtcza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void    error_exit(const char *msg)
+void	error_exit(const char *msg)
 {
-    perror(msg);
-    exit(EXIT_FAILURE);
+	perror(msg);
+	exit(EXIT_FAILURE);
 }
 
 char	*get_path_env(char **envp)
@@ -63,15 +74,14 @@ char	*find_command_path(const char *command, char **envp)
 		free(command_path);
 		i++;
 	}
-    free(paths);
+	free(paths);
 	return (NULL);
 }
 
-
-void execute_cmd(char *cmd, char **envp)
+void	execute_cmd(char *cmd, char **envp)
 {
-	char **args;
-	char *full_cmd;
+	char	**args;
+	char	*full_cmd;
 
 	full_cmd = NULL;
 	args = ft_split(cmd, ' ');
