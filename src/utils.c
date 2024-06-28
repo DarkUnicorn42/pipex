@@ -31,7 +31,7 @@ char	*construct_command_path(const char *dir, const char *command)
 	cmd_len = ft_strlen(command);
 	command_path = malloc(dir_len + cmd_len + 2);
 	if (!command_path)
-		error_exit("Malloc failed");
+		error_exit("err_malloc");
 	ft_strcpy(command_path, dir);
 	command_path[dir_len] = '/';
 	ft_strcpy(command_path + dir_len + 1, command);
@@ -47,10 +47,10 @@ char	*find_command_path(const char *command, char **envp)
 
 	path_env = get_path_env(envp);
 	if (!path_env)
-		error_exit("PATH variable not found");
+		error_exit("err_PATH_not_found");
 	paths = ft_split(path_env, ':');
 	if (!paths)
-		error_exit("Failed to split PATH");
+		error_exit("err_split_PATH");
 	i = 0;
 	while (paths[i])
 	{
@@ -76,10 +76,10 @@ void execute_cmd(char *cmd, char **envp)
 	full_cmd = NULL;
 	args = ft_split(cmd, ' ');
 	if (!args)
-		error_exit("ft_split");	
+		error_exit("err_ft_split");	
 	full_cmd = find_command_path(args[0], envp);
 	if (!full_cmd)
-		error_exit("cmd not found");
+		error_exit("err_cmd_not_found");
 	if (execve(full_cmd, args, envp) == -1)
-		error_exit("execve err");
+		error_exit("err_execve");
 }
