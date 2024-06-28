@@ -86,7 +86,7 @@ void	execute_cmd(char *cmd, char **envp)
 	full_cmd = NULL;
 	args = ft_split(cmd, ' ');
 	if (!args)
-		error_exit("err_ft_split");	
+		error_exit("err_ft_split");
 	full_cmd = find_command_path(args[0], envp);
 	if (!full_cmd)
 		error_exit("err_cmd_not_found");

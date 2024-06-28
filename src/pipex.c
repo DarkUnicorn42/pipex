@@ -46,12 +46,12 @@ void	pipex(int fd_in, int fd_out, char **argv, char **envp)
 		error_exit("err_pipe");
 	pid1 = fork();
 	if (pid1 == -1)
-		error_exit("err_fork");	
+		error_exit("err_fork");
 	if (pid1 == 0)
 		first_child(fd_in, pipe_fd, argv, envp);
 	pid2 = fork();
 	if (pid2 == -1)
-	    error_exit("err_fork");	
+		error_exit("err_fork");
 	if (pid2 == 0)
 		second_child(fd_out, pipe_fd, argv, envp);
 	close(pipe_fd[0]);
@@ -69,10 +69,10 @@ int	main(int argc, char **argv, char **envp)
 		error_exit("err_arg_count");
 	fd_in = open(argv[1], O_RDONLY);
 	if (fd_in == -1)
-	    error_exit("err_infile");
+		error_exit("err_infile");
 	fd_out = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd_out == -1)
-	    error_exit("err_outfile");
+		error_exit("err_outfile");
 	pipex(fd_in, fd_out, argv, envp);
 	close(fd_in);
 	close(fd_out);
